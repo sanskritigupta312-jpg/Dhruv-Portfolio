@@ -1,92 +1,87 @@
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaGithub } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { FaLinkedin, FaGithub, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import portfolioData from "../data/portfolioData";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-gray-300 py-10">
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-        
-        {/* About */}
-        <div>
-          <h3 className="text-2xl font-bold text-white mb-4">
-            {portfolioData.name}
-          </h3>
-          <p className="text-sm mb-4">
-            {portfolioData.title} passionate about creating data-driven
-            marketing strategies that enhance brand visibility and drive
-            business growth.
-          </p>
-        </div>
+    <footer className="bg-[#050505] pt-24 pb-12 border-t border-[#D4AF37]/10 relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-[#D4AF37]/5 blur-[100px] rounded-full pointer-events-none" />
 
-        {/* Quick Links */}
-        <div>
-          <h4 className="text-xl font-semibold text-white mb-4">
-            Quick Links
-          </h4>
-          <ul className="space-y-2">
-            <li><Link to="/" className="hover:text-white">Home</Link></li>
-            <li><Link to="/about" className="hover:text-white">About</Link></li>
-            <li><Link to="/experience" className="hover:text-white">Experience</Link></li>
-            <li><Link to="/skills" className="hover:text-white">Skills</Link></li>
-            <li><Link to="/education" className="hover:text-white">Education</Link></li>
-            <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
-          </ul>
-        </div>
-
-        {/* Contact Info */}
-        <div>
-          <h4 className="text-xl font-semibold text-white mb-4">
-            Contact
-          </h4>
-          <div className="space-y-3 text-sm">
-            <p className="flex items-center gap-2">
-              <FaPhone /> {portfolioData.contact.phone}
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+          
+          {/* Brand Identity */}
+          <div className="md:col-span-2">
+            <Link to="/" className="text-3xl font-serif font-bold text-white tracking-widest mb-6 block">
+              DHRUV<span className="text-[#D4AF37]">.</span>
+            </Link>
+            <p className="text-white/40 max-w-sm leading-relaxed text-lg font-light">
+              Digital Marketing Executive at <span className="text-white">Webvoom Pvt Ltd</span>. 
+              Specializing in high-performance strategies and luxury digital experiences.
             </p>
-            <p className="flex items-center gap-2">
-              <FaEnvelope /> {portfolioData.contact.email}
-            </p>
-            <p className="flex items-start gap-2">
-              <FaMapMarkerAlt /> {portfolioData.contact.address}
-            </p>
-          </div>
-
-          {/* Social Icons */}
-          <div className="flex gap-4 mt-4 text-xl">
-            {portfolioData.contact.linkedin && (
-              <a
-                href={portfolioData.contact.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white"
-              >
+            <div className="flex gap-6 mt-8">
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-white/40 hover:text-[#D4AF37] transition-colors text-xl">
                 <FaLinkedin />
               </a>
-            )}
-            {portfolioData.contact.github && (
-              <a
-                href={portfolioData.contact.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white"
-              >
+              <a href="https://github.com" target="_blank" rel="noreferrer" className="text-white/40 hover:text-[#D4AF37] transition-colors text-xl">
                 <FaGithub />
               </a>
-            )}
+            </div>
+          </div>
+
+          {/* Navigation Links */}
+          <div>
+            <h4 className="text-white font-serif text-xl mb-6">Explore</h4>
+            <ul className="space-y-4">
+              {['Home', 'Experience', 'About', 'Education', 'Contact'].map((item) => (
+                <li key={item}>
+                  <Link 
+                    to={item === 'Home' ? '/' : `/${item.toLowerCase()}`} 
+                    className="text-white/40 hover:text-[#D4AF37] hover:translate-x-2 transition-all inline-block"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Direct Contact */}
+          <div>
+            <h4 className="text-white font-serif text-xl mb-6">Contact</h4>
+            <ul className="space-y-4">
+              <li className="flex items-center gap-4 text-white/40 group">
+                <FaPhoneAlt className="text-[#D4AF37] group-hover:scale-110 transition-transform" />
+                <a href="tel:8707858634" className="hover:text-white transition-colors">8707858634</a>
+              </li>
+              <li className="flex items-center gap-4 text-white/40 group">
+                <FaEnvelope className="text-[#D4AF37] group-hover:scale-110 transition-transform" />
+                <a href="mailto:dhruvv389@gmail.com" className="hover:text-white transition-colors">dhruvv389@gmail.com</a>
+              </li>
+              <li className="flex items-start gap-4 text-white/40">
+                <FaMapMarkerAlt className="text-[#D4AF37] mt-1" />
+                <span>Lucknow, <br/>Uttar Pradesh</span>
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
-        <p>
-          © {currentYear} {portfolioData.name}. All rights reserved.
-        </p>
-        <p className="mt-2">
-          Designed & Developed with ❤️ using React & Tailwind CSS.
-        </p>
+        {/* Bottom Bar */}
+        <div className="pt-12 border-t border-white/5 flex flex-col md:row justify-between items-center gap-6">
+          <p className="text-white/20 text-sm tracking-widest uppercase">
+            © {currentYear} Dhruv Verma. Built for Excellence.
+          </p>
+          <motion.button 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            whileHover={{ y: -5 }}
+            className="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-bold border-b border-[#D4AF37] pb-1"
+          >
+            Back to Top
+          </motion.button>
+        </div>
       </div>
     </footer>
   );

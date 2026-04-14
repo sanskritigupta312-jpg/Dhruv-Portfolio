@@ -1,4 +1,24 @@
 @import "tailwindcss";
 
-/* Enable class-based dark mode */
-@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --color-dark: #050505;
+  --color-gold: #D4AF37;
+  --color-gold-muted: #af8f2c;
+  --color-surface: #111111;
+  --color-glass: rgba(212, 175, 55, 0.05);
+  
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body {
+  background-color: var(--color-dark);
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+}
+
+/* Custom Gold Gradient Utility */
+.text-gold-gradient {
+  background: linear-gradient(to right, #D4AF37, #FBF5B7, #D4AF37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

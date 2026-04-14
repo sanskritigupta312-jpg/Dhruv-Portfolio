@@ -1,170 +1,139 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  HiSun,
-  HiMoon,
-  HiMenu,
-  HiX,
-} from "react-icons/hi";
-import portfolioData from "../data/portfolioData";
+import { HiMenu, HiX } from "react-icons/hi";
 
-const Navbar = ({ isDark, toggleTheme }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
-  // Detect scroll for shadow effect
+  // Detect scroll to trigger the "glass" navbar effect
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
-  const closeMenu = () => setIsOpen(false);
+  // Close mobile menu automatically when clicking a link
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
 
-  const navLinkClass = ({ isActive }) =>
-    `relative font-medium transition-colors duration-300 ${
-      isActive
-        ? "text-blue-600 dark:text-blue-400"
-        : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
-    }`;
-
+  // Updated Navigation Links to include all pages
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Skills", path: "/skills" },
-    { name: "Education", path: "/education" },
     { name: "Projects", path: "/projects" },
+    { name: "Experience", path: "/experience" },
+    { name: "Education", path: "/education" },
     { name: "Contact", path: "/contact" },
   ];
 
   return (
-    <motion.nav
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/90 dark:bg-[#020617]/90 shadow-lg backdrop-blur-md"
-          : "bg-white/70 dark:bg-[#020617]/70 backdrop-blur-md"
-      } border-b border-gray-100 dark:border-gray-800`}
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-700 ${
+        scrolled 
+          ? "bg-[#050505]/80 backdrop-blur-xl border-b border-[#D4AF37]/10 py-4 shadow-2xl" 
+          : "bg-transparent py-8"
+      }`}
     >
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Logo */}
-        <NavLink
-          to="/"
-          className="text-2xl font-bold text-gray-900 dark:text-white"
-          onClick={closeMenu}
-        >
-          {portfolioData.name}
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        
+        {/* Luxury Logo */}
+        <NavLink to="/" className="text-2xl font-serif font-bold text-white tracking-widest group">
+          DHRUV<span className="text-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity duration-500">.</span>
         </NavLink>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8">
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center space-x-8 lg:space-x-10">
           {navLinks.map((link) => (
             <NavLink
               key={link.name}
               to={link.path}
-              className={navLinkClass}
+              className={({ isActive }) =>
+                `relative text-[10px] lg:text-xs uppercase tracking-[0.2em] transition-colors duration-500 ${
+                  isActive ? "text-[#D4AF37]" : "text-white/50 hover:text-white"
+                }`
+              }
             >
               {({ isActive }) => (
-                <span className="relative">
+                <>
                   {link.name}
+                  {/* Gold underline for active link */}
                   {isActive && (
-                    <motion.span
-                      layoutId="underline"
-                      className="absolute left-0 -bottom-1 h-0.5 w-full bg-blue-600 dark:bg-blue-400"
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute -bottom-2 left-0 right-0 h-[1px] bg-[#D4AF37]"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
-                </span>
+                </>
               )}
             </NavLink>
           ))}
+        </div>
 
-          {/* Hire Me Button */}
+        {/* Desktop CTA Button */}
+        <div className="hidden md:block">
           <a
-            href={`mailto:${portfolioData.contact.email}`}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition shadow"
+            href="mailto:dhruvv389@gmail.com"
+            className="px-6 py-3 border border-[#D4AF37]/30 text-[#D4AF37] text-xs uppercase tracking-[0.2em] rounded-full hover:bg-[#D4AF37] hover:text-black transition-all duration-500"
           >
-            Hire Me
+            Let's Talk
           </a>
-
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle Theme"
-            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-yellow-400 hover:ring-2 ring-blue-500 transition-all"
-          >
-            {isDark ? <HiSun size={20} /> : <HiMoon size={20} />}
-          </button>
         </div>
 
-        {/* Mobile Controls */}
-        <div className="md:hidden flex items-center space-x-3">
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle Theme"
-            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-yellow-400"
-          >
-            {isDark ? <HiSun size={20} /> : <HiMoon size={20} />}
-          </button>
-
-          {/* Hamburger Menu */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle Menu"
-            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white"
-          >
-            {isOpen ? <HiX size={22} /> : <HiMenu size={22} />}
-          </button>
-        </div>
+        {/* Mobile Menu Toggle */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden text-white p-2 focus:outline-none"
+        >
+          {isOpen ? <HiX size={28} className="text-[#D4AF37]" /> : <HiMenu size={28} />}
+        </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-white dark:bg-[#020617] border-t border-gray-100 dark:border-gray-800"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="md:hidden absolute top-full left-0 w-full bg-[#050505]/95 backdrop-blur-3xl border-b border-[#D4AF37]/20 shadow-2xl h-screen overflow-y-auto"
           >
-            <div className="flex flex-col px-6 py-4 space-y-4">
+            <div className="flex flex-col px-8 py-12 space-y-8">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.name}
                   to={link.path}
-                  onClick={closeMenu}
                   className={({ isActive }) =>
-                    `block font-medium ${
-                      isActive
-                        ? "text-blue-600 dark:text-blue-400"
-                        : "text-gray-700 dark:text-gray-300"
+                    `text-2xl font-serif tracking-widest ${
+                      isActive ? "text-[#D4AF37]" : "text-white/60"
                     }`
                   }
                 >
                   {link.name}
                 </NavLink>
               ))}
-
-              {/* Hire Me Button */}
-              <a
-                href={`mailto:${portfolioData.contact.email}`}
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg text-center hover:bg-blue-700 transition"
-                onClick={closeMenu}
-              >
-                Hire Me
-              </a>
+              
+              <div className="pt-8 border-t border-white/10">
+                <a
+                  href="mailto:dhruvv389@gmail.com"
+                  className="inline-block w-full text-center bg-[#D4AF37] text-black font-bold py-4 rounded-xl uppercase tracking-widest text-sm"
+                >
+                  Let's Talk
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 };
 
