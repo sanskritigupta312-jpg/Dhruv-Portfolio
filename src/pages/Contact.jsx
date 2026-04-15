@@ -10,13 +10,15 @@ const Contact = () => {
   const contactInfo = {
     email: "dhruvv389@gmail.com",
     phone: "+91 88405 51052",
+    phoneClean: "+918840551052", 
     address: "Lucknow, Uttar Pradesh",
+    // Link to open Google Maps directly
+    addressLink: "https://www.google.com/maps/search/?api=1&query=Lucknow,Uttar+Pradesh",
     linkedin: "https://linkedin.com/in/dhruv-verma-6625b3324"
   };
 
   return (
     <section className="min-h-screen bg-dark py-32 px-6 relative overflow-hidden flex items-center">
-      {/* Background Decorative Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="max-w-4xl mx-auto relative z-10 w-full">
@@ -30,26 +32,15 @@ const Contact = () => {
           <h2 className="text-6xl md:text-7xl font-serif text-white mb-6">
             Let’s Create <span className="text-gold italic">Impact.</span>
           </h2>
-          <p className="text-white/40 max-w-xl mx-auto text-lg font-light">
-            Currently open to strategic partnerships and digital marketing consultancy. 
-            Reach out via any of the channels below.
-          </p>
         </motion.div>
 
-        <motion.div 
-          className="grid gap-6"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          {/* Main Contact Methods */}
+        <div className="grid gap-6">
           <div className="grid md:grid-cols-2 gap-6">
             <ContactCard
               icon={<FaPhoneAlt />}
               title="Direct Line"
               value={contactInfo.phone}
-              link={`tel:${contactInfo.phone}`}
+              link={`tel:${contactInfo.phoneClean}`}
             />
             <ContactCard
               icon={<FaEnvelope />}
@@ -63,9 +54,9 @@ const Contact = () => {
             icon={<FaMapMarkerAlt />}
             title="Current Base"
             value={contactInfo.address}
+            link={contactInfo.addressLink}
           />
 
-          {/* Social Links Section */}
           <div className="flex justify-center pt-4">
             <SocialCard 
               icon={<FaLinkedin />} 
@@ -73,31 +64,47 @@ const Contact = () => {
               link={contactInfo.linkedin} 
             />
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 };
 
-const ContactCard = ({ icon, title, value, link }) => (
-  <div className="bg-surface border border-gold/10 p-8 rounded-[2rem] hover:border-gold/30 transition-all duration-500 flex items-center gap-6 group">
-    <div className="text-3xl text-gold group-hover:scale-110 transition-transform duration-500">
-      {icon}
-    </div>
-    <div>
-      <h4 className="text-white/30 text-[10px] uppercase tracking-[0.3em] mb-1 font-mono">
-        {title}
-      </h4>
-      {link ? (
-        <a href={link} className="text-white text-xl hover:text-gold transition-colors block font-serif italic">
+// Updated ContactCard: The whole card is now a link if "link" prop is provided
+const ContactCard = ({ icon, title, value, link }) => {
+  const CardContent = (
+    <>
+      <div className="text-3xl text-gold group-hover:scale-110 transition-transform duration-500">
+        {icon}
+      </div>
+      <div>
+        <h4 className="text-white/30 text-[10px] uppercase tracking-[0.3em] mb-1 font-mono">
+          {title}
+        </h4>
+        <p className="text-white text-xl font-serif italic group-hover:text-gold transition-colors">
           {value}
-        </a>
-      ) : (
-        <p className="text-white text-xl font-serif italic">{value}</p>
-      )}
-    </div>
-  </div>
-);
+        </p>
+      </div>
+    </>
+  );
+
+  const classes = "bg-surface border border-gold/10 p-8 rounded-[2rem] hover:border-gold/30 transition-all duration-500 flex items-center gap-6 group w-full text-left";
+
+  if (link) {
+    return (
+      <a 
+        href={link} 
+        target={link.startsWith('http') ? "_blank" : undefined}
+        rel="noopener noreferrer"
+        className={classes}
+      >
+        {CardContent}
+      </a>
+    );
+  }
+
+  return <div className={classes}>{CardContent}</div>;
+};
 
 const SocialCard = ({ icon, label, link }) => (
   <motion.a

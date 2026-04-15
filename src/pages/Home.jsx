@@ -43,6 +43,18 @@ const Home = () => {
           <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-full h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
         </div>
 
+        {/* Skills Section */}
+        <motion.section 
+          id="skills"
+          className="relative z-10"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <Skills />
+        </motion.section>
+
         {/* About Section */}
         <motion.section 
           id="about"
@@ -59,18 +71,6 @@ const Home = () => {
         <div className="container mx-auto px-6">
             <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/10 to-transparent my-20" />
         </div>
-
-        {/* Skills Section */}
-        <motion.section 
-          id="skills"
-          className="relative z-10"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <Skills />
-        </motion.section>
 
         {/* 5. Enhanced High-Impact CTA Bridge */}
         <section className="py-40 relative overflow-hidden bg-dark">
