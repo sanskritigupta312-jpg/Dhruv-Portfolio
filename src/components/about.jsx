@@ -90,7 +90,7 @@ const AboutPage = () => {
               
               {/* Animated Email Button */}
               <a 
-                href="mailto:dhruvv388@gmail.com" 
+                href="mailto:dhruvv389@gmail.com" 
                 className="flex items-center gap-3 px-6 py-3 border border-gold/50 rounded-sm text-sm text-gray-400 hover:text-gold hover:border-gold hover:bg-gold/5 transition-premium group"
               >
                 <span className="relative flex h-2 w-2">
