@@ -60,14 +60,14 @@ const Hero = () => {
       <div className="absolute top-[-5%] right-[-5%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-gold/10 blur-[100px] md:blur-[150px] rounded-full" />
       <div className="absolute bottom-[-5%] left-[-5%] w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-gold/5 blur-[80px] md:blur-[120px] rounded-full" />
       
-      <div className="container mx-auto px-6 z-10 text-center">
+      <div className="container mx-auto px-3 z-10 text-center">
         <motion.span 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="text-gold uppercase text-[8px] md:text-xs tracking-[0.3em] md:tracking-[0.5em] block mb-6 md:mb-12"
+          className="text-gold uppercase text-[12px] md:text-sm tracking-[0.3em] md:tracking-[0.5em] block mb-2 md:mb-10"
         >
-          Webvoom Pvt Ltd • Digital Marketing Executive
+          Digital Marketing
         </motion.span>
         
         <div className="flex flex-col items-center">
@@ -81,7 +81,7 @@ const Hero = () => {
                   variants={titleVariant}
                   initial="hidden"
                   animate="visible"
-                  className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-serif leading-none text-white font-bold"
+                  className="text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] font-serif leading-none text-white font-bold"
                 >
                   {char}
                 </motion.h1>
@@ -99,7 +99,7 @@ const Hero = () => {
                   variants={titleVariant}
                   initial="hidden"
                   animate="visible"
-                  className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-serif leading-none text-gold font-bold"
+                  className="text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] font-serif leading-none text-gold font-bold"
                 >
                   {char}
                 </motion.h1>
