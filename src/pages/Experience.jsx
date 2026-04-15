@@ -12,7 +12,7 @@ const Experience = () => {
       year: "Dec 2025 — Present",
       shortYear: "2026",
       desc: "Spearheading full-funnel digital marketing strategies, optimizing ad spend for maximum ROI, and driving brand growth through data-backed performance campaigns.",
-      skills: ["Performance Marketing", "SEO Strategy", "Campaign Optimization"]
+      skills: ["Google Ads", "SEO", "Meta Ads", "Google Analytics", "GMB"]
     },
     {
       company: "JBR Infra & Developers",
@@ -24,7 +24,7 @@ const Experience = () => {
     },
     {
       company: "Laura Beauty & Makeup Mantra",
-      role: "Graphic Designer & Social Media Exec",
+      role: "Graphic Designer & Social Media Manager",
       year: "Aug 2024 — Mar 2025",
       shortYear: "2024",
       desc: "Integrated visual design with digital marketing strategies to create a cohesive brand identity, significantly increasing audience engagement across social platforms.",
