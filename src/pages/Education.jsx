@@ -25,6 +25,22 @@ const Education = () => {
       duration: "Completed",
       description: "Foundational and advanced computer applications, programming concepts, and digital literacy.",
       courses: ["Python", "Web Design", "IT Tools"],
+    },
+    {
+      type: "Senior Secondary",
+      title: "ICSE (Class XII)",
+      institution: "Seventh Day Adventist School",
+      duration: "Completed",
+      description: "Specialized in the Commerce stream, developing a core understanding of accountancy and economics.",
+      courses: ["Commerce", "Accounts", "Economics"],
+    },
+    {
+      type: "Secondary Education",
+      title: "ICSE (Class X)",
+      institution: "Seventh Day Adventist School",
+      duration: "Completed",
+      description: "General academic curriculum with a focus on core analytical subjects and language proficiency.",
+      courses: ["Science", "Mathematics", "English"],
     }
   ];
 
