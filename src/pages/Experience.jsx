@@ -7,28 +7,28 @@ const Experience = () => {
 
   const experiences = [
     {
-      company: "Webvoom Pvt Ltd",
+      company: "WebVoom Pvt Ltd",
       role: "Digital Marketing Executive",
-      year: "2022 — Present",
-      shortYear: "2024",
-      desc: "Architecting performance strategies, driving ROI, and spearheading comprehensive digital growth initiatives.",
-      skills: ["SEO", "Performance Marketing", "Strategy"]
+      year: "Dec 2025 — Present",
+      shortYear: "2026",
+      desc: "Spearheading full-funnel digital marketing strategies, optimizing ad spend for maximum ROI, and driving brand growth through data-backed performance campaigns.",
+      skills: ["Performance Marketing", "SEO Strategy", "Campaign Optimization"]
     },
     {
       company: "JBR Infra & Developers",
       role: "Social Media Manager",
-      year: "2022",
-      shortYear: "2022",
-      desc: "Led cross-platform social strategy for premium real estate developments, drastically enhancing engagement and lead flow.",
-      skills: ["Meta Ads", "Content Creation", "Lead Gen"]
+      year: "Mar 2025 — May 2025",
+      shortYear: "2025",
+      desc: "Strategized and executed comprehensive social media campaigns for premium real estate projects, focusing on high-quality lead generation and brand authority.",
+      skills: ["Social Media Marketing", "Lead Gen", "Competitor Analysis"]
     },
     {
-      company: "Laura Beauty",
+      company: "Laura Beauty & Makeup Mantra",
       role: "Graphic Designer & Social Media Exec",
-      year: "2021 — 2022",
-      shortYear: "2021",
-      desc: "Merged visual design with social media management to create a cohesive brand identity and boost online presence.",
-      skills: ["Branding", "UI/UX", "Social Management"]
+      year: "Aug 2024 — Mar 2025",
+      shortYear: "2024",
+      desc: "Integrated visual design with digital marketing strategies to create a cohesive brand identity, significantly increasing audience engagement across social platforms.",
+      skills: ["Graphic Design", "Social Media", "Web Designing"]
     }
   ];
 
