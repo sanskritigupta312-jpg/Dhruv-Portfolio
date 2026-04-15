@@ -22,7 +22,6 @@ const Navbar = () => {
     setIsOpen(false);
   }, [location]);
 
-  // Updated Navigation Links to include all pages
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
@@ -33,9 +32,13 @@ const Navbar = () => {
     { name: "Contact", path: "/contact" },
   ];
 
+  // Dynamic height calculation for the mobile menu offset
+  // When scrolled, navbar is py-4 (~64px), when top, navbar is py-8 (~96px)
+  const navHeight = scrolled ? "64px" : "96px";
+
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-700 ${
+      className={`fixed top-0 w-full z-[100] transition-all duration-700 ${
         scrolled 
           ? "bg-[#050505]/80 backdrop-blur-xl border-b border-[#D4AF37]/10 py-4 shadow-2xl" 
           : "bg-transparent py-8"
@@ -63,7 +66,6 @@ const Navbar = () => {
               {({ isActive }) => (
                 <>
                   {link.name}
-                  {/* Gold underline for active link */}
                   {isActive && (
                     <motion.div
                       layoutId="activeNav"
@@ -90,7 +92,7 @@ const Navbar = () => {
         {/* Mobile Menu Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-white p-2 focus:outline-none"
+          className="md:hidden text-white p-2 focus:outline-none relative z-[110]"
         >
           {isOpen ? <HiX size={28} className="text-[#D4AF37]" /> : <HiMenu size={28} />}
         </button>
@@ -100,11 +102,12 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden absolute top-full left-0 w-full bg-[#050505]/95 backdrop-blur-3xl border-b border-[#D4AF37]/20 shadow-2xl h-screen overflow-y-auto"
+            style={{ top: navHeight, height: `calc(100vh - ${navHeight})` }}
+            className="md:hidden fixed left-0 w-full bg-[#050505]/98 backdrop-blur-3xl border-t border-[#D4AF37]/10 shadow-2xl overflow-y-auto z-[90]"
           >
             <div className="flex flex-col px-8 py-12 space-y-8">
               {navLinks.map((link) => (
@@ -112,8 +115,8 @@ const Navbar = () => {
                   key={link.name}
                   to={link.path}
                   className={({ isActive }) =>
-                    `text-2xl font-serif tracking-widest ${
-                      isActive ? "text-[#D4AF37]" : "text-white/60"
+                    `text-2xl font-serif tracking-widest transition-colors duration-300 ${
+                      isActive ? "text-[#D4AF37]" : "text-white/60 hover:text-white"
                     }`
                   }
                 >
@@ -124,7 +127,7 @@ const Navbar = () => {
               <div className="pt-8 border-t border-white/10">
                 <a
                   href="mailto:dhruvv389@gmail.com"
-                  className="inline-block w-full text-center bg-[#D4AF37] text-black font-bold py-4 rounded-xl uppercase tracking-widest text-sm"
+                  className="inline-block w-full text-center bg-[#D4AF37] text-black font-bold py-4 rounded-xl uppercase tracking-widest text-sm active:scale-95 transition-transform"
                 >
                   Let's Talk
                 </a>
