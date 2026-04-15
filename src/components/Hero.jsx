@@ -65,9 +65,9 @@ const Hero = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="text-gold uppercase text-[12px] md:text-sm tracking-[0.3em] md:tracking-[0.5em] block mb-2 md:mb-10"
+          className="text-gold uppercase text-[15px] md:text-xl tracking-[0.3em] md:tracking-[0.5em] block mb-2 md:mb-10"
         >
-          Digital Marketing
+          Digital Marketer
         </motion.span>
         
         <div className="flex flex-col items-center">

@@ -9,8 +9,8 @@ import {
 const Contact = () => {
   const contactInfo = {
     email: "dhruvv389@gmail.com",
-    phone: "+91 88405 51052",
-    phoneClean: "+918840551052", 
+    phone: "+91 87078 58634",
+    phoneClean: "+918707858634", 
     address: "Lucknow, Uttar Pradesh",
     // Link to open Google Maps directly
     addressLink: "https://www.google.com/maps/search/?api=1&query=Lucknow,Uttar+Pradesh",
