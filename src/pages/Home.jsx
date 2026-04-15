@@ -21,15 +21,6 @@ const Home = () => {
   return (
     <div ref={containerRef} className="relative bg-dark selection:bg-gold selection:text-black">
       
-      {/* 1. Premium Progress Indicator */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-gold/50 via-gold to-gold/50 z-[100] origin-left shadow-[0_0_15px_rgba(212,175,55,0.5)]"
-        style={{ scaleX }}
-      />
-
-      {/* 2. Global Noise Texture Overlay (Adds "Film" feel) */}
-      <div className="fixed inset-0 pointer-events-none z-[99] opacity-[0.03] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
-
       <main>
         {/* Hero Section */}
         <section id="hero" className="relative">
@@ -95,8 +86,7 @@ const Home = () => {
             </motion.div>
           </div>
 
-          {/* Bottom ambient glow */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-64 bg-gold/5 blur-[120px] rounded-full pointer-events-none" />
+          
         </section>
       </main>
     </div>

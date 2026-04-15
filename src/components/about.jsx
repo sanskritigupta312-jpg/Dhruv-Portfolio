@@ -46,62 +46,42 @@ const AboutPage = () => {
   return (
     <div className="bg-dark text-white min-h-screen font-sans selection:bg-gold selection:text-dark overflow-x-hidden">
       
-      {/* Hero Section */}
-      <section className="max-w-6xl mx-auto px-6 py-20 lg:py-32">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+      {/* Hero Section - Image Removed, Content Centered */}
+      <section className="max-w-6xl mx-auto px-6 py-24 lg:py-40">
+        <motion.div 
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-col items-center text-center"
+        >
+          <motion.h2 variants={fadeInUp} className="text-gold-gradient text-sm font-bold tracking-[0.3em] uppercase mb-4">
+            Digital Marketing Specialist
+          </motion.h2>
           
-          {/* Round Image with Scale Animation */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="md:col-span-5 flex justify-center md:justify-end relative group"
-          >
-            <div className="absolute -inset-1 bg-gradient-to-r from-gold/30 to-gold/10 rounded-full blur-2xl opacity-75"></div>
-            <div className="relative overflow-hidden rounded-full border-2 border-gold/50 shadow-2xl w-64 h-64 lg:w-80 lg:h-80 transition-transform duration-500 hover:scale-105">
-              <img 
-                src="/dhruv.jpeg" 
-                alt="Dhruv Verma" 
-                className="w-full h-full object-cover" 
-              />
-            </div>
+          <motion.h1 variants={fadeInUp} className="text-5xl lg:text-8xl font-bold mb-6">
+            I'm <span className="text-gold-gradient">Dhruv Verma</span>
+          </motion.h1>
+          
+          <motion.p variants={fadeInUp} className="text-gray-400 text-lg lg:text-xl leading-relaxed mb-10 max-w-2xl">
+            Currently at <span className="text-white font-medium">WebVoom Pvt Ltd</span>, I bridge the gap 
+            between creative storytelling and data-driven results. Based in Lucknow, I specialize in SEO, 
+            SEM, and building high-ROI digital ecosystems.
+          </motion.p>
+          
+          <motion.div variants={fadeInUp}>
+            {/* Animated Email Button */}
+            <a 
+              href="mailto:dhruvv389@gmail.com" 
+              className="flex items-center gap-3 px-8 py-4 border border-gold/50 rounded-sm text-sm text-gray-400 hover:text-gold hover:border-gold hover:bg-gold/5 transition-premium group"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              </span>
+              <span className="font-medium tracking-wide uppercase">Available for Projects</span>
+            </a>
           </motion.div>
-
-          {/* Text Content with Staggered Fade-in */}
-          <motion.div 
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
-            className="md:col-span-7 md:pl-10 text-center md:text-left"
-          >
-            <motion.h2 variants={fadeInUp} className="text-gold-gradient text-sm font-bold tracking-[0.3em] uppercase mb-4">
-              Digital Marketing Specialist
-            </motion.h2>
-            <motion.h1 variants={fadeInUp} className="text-5xl lg:text-7xl font-bold mb-6">
-              I'm <span className="text-gold-gradient">Dhruv Verma</span>
-            </motion.h1>
-            <motion.p variants={fadeInUp} className="text-gray-400 text-lg leading-relaxed mb-8 max-w-xl mx-auto md:mx-0">
-              Currently at <span className="text-white font-medium">WebVoom Pvt Ltd</span>, I bridge the gap 
-              between creative storytelling and data-driven results. Based in Lucknow, I specialize in SEO, 
-              SEM, and building high-ROI digital ecosystems.
-            </motion.p>
-            
-            <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 justify-center md:justify-start">
-              
-              {/* Animated Email Button */}
-              <a 
-                href="mailto:dhruvv389@gmail.com" 
-                className="flex items-center gap-3 px-6 py-3 border border-gold/50 rounded-sm text-sm text-gray-400 hover:text-gold hover:border-gold hover:bg-gold/5 transition-premium group"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
-                <span className="font-medium tracking-wide">Available for Projects</span>
-              </a>
-            </motion.div>
-          </motion.div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Experience Section with Scroll Reveal */}
@@ -177,7 +157,7 @@ const AboutPage = () => {
               </motion.span>
             ))}
           </div>
-        </motion.div>
+        </motion.div> 
       </section>
     </div>
   );
