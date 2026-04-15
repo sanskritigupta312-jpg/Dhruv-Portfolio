@@ -3,7 +3,6 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
 import AboutPage from "../components/about";
-import Skills from "./Skills"; // Ensure this component exists in your folder
 
 const Home = () => {
   const containerRef = useRef(null);
@@ -59,7 +58,7 @@ const Home = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dark to-dark" />
           <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-full h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
         </div>
-        
+
         {/* 5. Enhanced High-Impact CTA Bridge */}
         <section className="py-40 relative overflow-hidden bg-dark">
           {/* Moving background text for parallax effect */}
