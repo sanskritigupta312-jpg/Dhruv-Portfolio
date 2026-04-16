@@ -1,14 +1,18 @@
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+
+// Components
 import Hero from "../components/Hero";
 import AboutPage from "../components/about";
+import StatsSection from "../components/statsection";
+import ProjectGrid from "../components/ProjectsGrid";
 
 const Home = () => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll();
   
-  // Smooth Progress Bar
+  // Smooth Progress Bar logic (already in your original code)
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -21,19 +25,28 @@ const Home = () => {
   return (
     <div ref={containerRef} className="relative bg-dark selection:bg-gold selection:text-black">
       
+      {/* 1. Scroll Progress Bar */}
+      <motion.div 
+        className="fixed top-0 left-0 right-0 h-1 bg-gold z-50 origin-left"
+        style={{ scaleX }}
+      />
+
       <main>
-        {/* Hero Section */}
+        {/* 2. Hero Section - The First Impression */}
         <section id="hero" className="relative">
           <Hero />
         </section>
 
-        {/* 3. Smooth Transition with Ambient Glow */}
+        {/* 3. Stats Section - Immediate Proof of Impact */}
+        <StatsSection />
+
+        {/* 4. Smooth Transition with Ambient Glow */}
         <div className="relative h-48 -mt-24 pointer-events-none z-10">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dark to-dark" />
           <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-full h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
         </div>
 
-        {/* About Section */}
+        {/* 5. About Section - The Story Behind the Work */}
         <motion.section 
           id="about"
           className="relative z-10"
@@ -45,12 +58,10 @@ const Home = () => {
           <AboutPage />
         </motion.section>
 
-        <div className="relative h-48 -mt-24 pointer-events-none z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dark to-dark" />
-          <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-full h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
-        </div>
+        {/* 6. Project Grid - Showing the Actual Case Studies */}
+        <ProjectGrid />
 
-        {/* 5. Enhanced High-Impact CTA Bridge */}
+        {/* 7. High-Impact CTA Bridge */}
         <section className="py-40 relative overflow-hidden bg-dark">
           {/* Moving background text for parallax effect */}
           <motion.div 
@@ -85,8 +96,6 @@ const Home = () => {
               </Link>
             </motion.div>
           </div>
-
-          
         </section>
       </main>
     </div>
