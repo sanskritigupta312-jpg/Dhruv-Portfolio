@@ -43,9 +43,9 @@ const StatsSection = () => {
     <section className="bg-dark border-y border-white/5">
       <div className="container mx-auto grid grid-cols-2 lg:grid-cols-4">
         <StatItem value="50" suffix="%" label="Avg. ROI Increase" />
-        <StatItem value="12" suffix="+" label="Premium Clients" />
-        <StatItem value="150" suffix="K" label="Leads Generated" />
-        <StatItem value="5" suffix="+" label="Years Experience" />
+        <StatItem value="25" suffix="+" label="Premium Clients" />
+        <StatItem value="500" suffix="+" label="Leads Generated" />
+        <StatItem value="2" suffix="+" label="Years Experience" />
       </div>
     </section>
   );
