@@ -77,7 +77,6 @@ function App() {
               <Route path="/skills" element={<PageWrapper><Skills /></PageWrapper>} />
               <Route path="/education" element={<PageWrapper><Education /></PageWrapper>} />
               <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
-              <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>
         </main>

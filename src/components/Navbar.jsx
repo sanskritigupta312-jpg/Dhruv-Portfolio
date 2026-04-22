@@ -1,12 +1,22 @@
 import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion"; // 1. Added useScroll & useSpring
 import { HiMenu, HiX } from "react-icons/hi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  // 2. Hook to track scroll progress (0 to 1)
+  const { scrollYProgress } = useScroll();
+  
+  // 3. Smooth out the progress movement
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   // Detect scroll to trigger the "glass" navbar effect
   useEffect(() => {
@@ -32,8 +42,6 @@ const Navbar = () => {
     { name: "Contact", path: "/contact" },
   ];
 
-  // Dynamic height calculation for the mobile menu offset
-  // When scrolled, navbar is py-4 (~64px), when top, navbar is py-8 (~96px)
   const navHeight = scrolled ? "64px" : "96px";
 
   return (
@@ -44,6 +52,12 @@ const Navbar = () => {
           : "bg-transparent py-8"
       }`}
     >
+      {/* 4. The Scroll Progress Bar */}
+      <motion.div 
+        className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D4AF37] origin-left z-[101]"
+        style={{ scaleX }}
+      />
+
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         
         {/* Luxury Logo */}
