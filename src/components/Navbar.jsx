@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion"; // 1. Added useScroll & useSpring
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { HiMenu, HiX } from "react-icons/hi";
 
 const Navbar = () => {
@@ -8,17 +8,14 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  // 2. Hook to track scroll progress (0 to 1)
+  // Track scroll progress
   const { scrollYProgress } = useScroll();
-  
-  // 3. Smooth out the progress movement
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
   });
 
-  // Detect scroll to trigger the "glass" navbar effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -27,7 +24,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu automatically when clicking a link
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
@@ -52,20 +48,18 @@ const Navbar = () => {
           : "bg-transparent py-8"
       }`}
     >
-      {/* 4. The Scroll Progress Bar */}
+      {/* FIXED: Moved to top-0 so it sits completely above the navbar */}
       <motion.div 
-        className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D4AF37] origin-left z-[101]"
+        className="absolute top-0 left-0 right-0 h-[2px] bg-[#D4AF37] origin-left z-[101]"
         style={{ scaleX }}
       />
 
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         
-        {/* Luxury Logo */}
         <NavLink to="/" className="text-2xl font-serif font-bold text-white tracking-widest group">
           DHRUV<span className="text-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity duration-500">.</span>
         </NavLink>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8 lg:space-x-10">
           {navLinks.map((link) => (
             <NavLink
@@ -93,7 +87,6 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Desktop CTA Button */}
         <div className="hidden md:block">
           <a
             href="mailto:dhruvv389@gmail.com"
@@ -103,7 +96,6 @@ const Navbar = () => {
           </a>
         </div>
 
-        {/* Mobile Menu Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden text-white p-2 focus:outline-none relative z-[110]"
@@ -112,7 +104,6 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
