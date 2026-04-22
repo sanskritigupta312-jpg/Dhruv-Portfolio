@@ -1,57 +1,67 @@
 import { motion } from "framer-motion";
 
-const projects = [
+const caseStudies = [
   {
-    title: "WebVoom Growth Strategy",
-    category: "Digital Marketing",
-    size: "lg:col-span-2 lg:row-span-2",
-    img: "/project1.jpg"
+    id: "01",
+    title: "JBR Infra Lead Generation",
+    category: "Real Estate Social Strategy",
   },
   {
-    title: "JBR Infra Branding",
-    category: "Lead Generation",
-    size: "lg:col-span-1 lg:row-span-1",
-    img: "/project2.jpg"
+    id: "02",
+    title: "Laura Beauty Brand Identity",
+    category: "Visual Identity & Graphic Design",
   },
   {
-    title: "Beauty Mantra SEO",
-    category: "Search Optimization",
-    size: "lg:col-span-1 lg:row-span-1",
-    img: "/project3.jpg"
+    id: "03",
+    title: "WebVoom Growth Optimization",
+    category: "Performance Marketing & SEO",
   }
 ];
 
 const ProjectGrid = () => {
   return (
-    <section className="py-24 bg-dark">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col mb-16">
-          <span className="text-gold uppercase tracking-[0.4em] text-xs mb-4">Selected Work</span>
-          <h2 className="text-4xl md:text-5xl font-serif text-white">Case Studies</h2>
+    <section className="py-24 bg-dark text-white"> {/* Matches --color-dark #050505 */}
+      <div className="container mx-auto px-6 max-w-4xl">
+        
+        {/* Header Section */}
+        <div className="mb-20">
+          <span className="text-gold uppercase tracking-[0.4em] text-[10px] font-bold mb-4 block">
+            Portfolio
+          </span>
+          <h2 className="text-5xl font-serif italic text-gold-gradient">
+            Case Studies
+          </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
+        {/* Simplified Case Study List */}
+        <div className="flex flex-col">
+          {caseStudies.map((project, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              whileHover={{ x: 10 }} // Subtle motion for a classy feel
+              transition={{ 
+                duration: 0.8, 
+                delay: index * 0.1,
+                ease: [0.22, 1, 0.36, 1] // Matches your --ease-premium
+              }}
               viewport={{ once: true }}
-              className={`group relative overflow-hidden rounded-xl bg-surface border border-white/10 ${project.size} min-h-[300px]`}
+              className="group border-b border-white/5 py-12 flex items-start gap-10 cursor-default hover:bg-glass transition-colors duration-500"
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent z-10 opacity-80" />
+              {/* Project Number */}
+              <span className="text-gold-muted font-mono text-sm mt-2 opacity-40 group-hover:opacity-100 transition-opacity">
+                {project.id}
+              </span>
               
-              {/* Image Placeholder - Use your actual project images */}
-              <div className="absolute inset-0 bg-white/5 transition-transform duration-700 group-hover:scale-110" />
-              
-              <div className="absolute bottom-0 left-0 p-8 z-20">
-                <span className="text-gold text-xs uppercase tracking-widest mb-2 block opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {project.category}
-                </span>
-                <h3 className="text-2xl font-serif text-white group-hover:text-gold transition-colors">
+              {/* Project Info */}
+              <div className="flex-1">
+                <h3 className="text-3xl md:text-5xl font-serif group-hover:text-gold transition-colors duration-500">
                   {project.title}
                 </h3>
+                <p className="text-white/30 text-xs uppercase tracking-[0.3em] mt-3 group-hover:text-white/60 transition-colors">
+                  {project.category}
+                </p>
               </div>
             </motion.div>
           ))}
